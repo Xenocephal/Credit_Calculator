@@ -1,0 +1,51 @@
+﻿<Window x:Class="Credit_Calc.EnterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Credit_Calc"
+        mc:Ignorable="d"
+        Title="Введите сумму" 
+        Height="130" Width="200" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TextBox Name ="TextBox_Overpay" 
+                 Text="5000"                  
+                 Height="25"
+                 Width="100" 
+                 Margin="5,5,0,0" 
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" 
+                 VerticalContentAlignment="Center"/>
+
+        <Button Content="Ввод" 
+                HorizontalAlignment="Left" 
+                Margin="110,5,0,0" 
+                VerticalAlignment="Top" 
+                Height="25" Width="80" Click="Button_Click"/>
+
+        <ComboBox Name="ComboBox_PayType" 
+                  HorizontalAlignment="Left" 
+                  Margin="5,74,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="185" Height="25" SelectedIndex="0"/>
+
+        <Label Content="Тип погашения:" 
+               HorizontalAlignment="Left" 
+               Margin="43,50,0,0" 
+               VerticalAlignment="Top"/>
+
+        <CheckBox Name="CheckBox_FixPay" 
+                  Content="Полный платеж" 
+                  HorizontalAlignment="Left" 
+                  Margin="5,35,0,0" 
+                  VerticalAlignment="Top" Checked="CheckBox_FixPay_Checked"/>
+
+    </Grid>
+</Window>
