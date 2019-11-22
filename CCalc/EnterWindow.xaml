@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Credit_Calc"
         mc:Ignorable="d"
         Title="Введите сумму" 
-        Height="130" Width="200" 
+        Height="140" Width="210" 
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
