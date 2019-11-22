@@ -1,12 +1,30 @@
-﻿namespace Credit_Calc
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace Credit_Calc
 {
     // Тип досрочного погашения
     public enum OverPayType { Time, Amount, None };
 
-    public class Payment
+    public class Payment : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
         // Номер месяца
-        public int MonthNum { get; set; } = 0;
+        private int month;
+        public int Month
+        {
+            get => month;
+            set
+            {
+                month = value;
+                OnPropertyChanged("Month");
+            }
+        }
 
         // Сумма платежа, руб
         private double pay;
@@ -17,6 +35,7 @@
             {
                 if (value >= 0) pay = value;
                 else pay = 0;
+                OnPropertyChanged("Pay");
             }
         }
 
@@ -29,6 +48,7 @@
             {
                 if (value >= 0) percents = value;
                 else percents = 0;
+                OnPropertyChanged("Percents");
             }
         }
 
@@ -41,11 +61,13 @@
             {
                 if (value >= 0) last = value;
                 else last = 0;
+                OnPropertyChanged("Last");
             }
         }
 
         // Сумма досрочного погашения
         private double overPay = 0;
+
         public double OverPay
         {
             get { return overPay; }
@@ -53,10 +75,21 @@
             {
                 if (value >= 0 & value <= Last) overPay = value;
                 else if (value > Last) overPay = Last;
+                OnPropertyChanged("OverPay");
             }
         }
 
         // Тип досрочного погашения
-        public OverPayType PayType { get; set; } = OverPayType.None;
+        private OverPayType payType = OverPayType.None;
+        public OverPayType PayType
+        {
+            get => payType;
+            set
+            {
+                if (Last == 0) payType = OverPayType.None;
+                else payType = value;
+                OnPropertyChanged("PayType");
+            }
+        }
     }
 }

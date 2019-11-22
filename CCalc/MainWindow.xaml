@@ -5,92 +5,134 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Credit_Calc"
         mc:Ignorable="d"
-        Title="Credit Calc" Height="600" Width="700" 
+        Title="Credit Calc" Height="600" Width="720"
+        FontFamily="Century Gothic" FontSize="14"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <Style TargetType="Window">
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="14"/>
         </Style>
+        <Style TargetType="ListView">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
         <Style TargetType="TextBox">
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="160"/>
         </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
     </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <GradientStop Color="AliceBlue" Offset="0"/>
+            <GradientStop Color="#FF75BAFF" Offset="0.3"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
         <TextBox Name="TextBox_CreditCost"
-                 HorizontalAlignment="Left" 
-                 Margin="10,10,0,0" 
-                 Text="2468000" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="80" Height="25" TabIndex="1"/>
-
+                 Grid.Row="1" Grid.Column="0" 
+                 Text="{Binding Cost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
+                 TabIndex="1"/>
         <TextBox Name="TextBox_Percent"
-                 HorizontalAlignment="Left" 
-                 Margin="10,40,0,0" 
-                 Text="9,00" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="80" Height="25" TabIndex="2"/>
-
+                 Grid.Row="1" Grid.Column="1" 
+                 Text="{Binding Rate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F1}}"
+                 TabIndex="2"/>
         <TextBox Name="TextBox_MonthCount"
-                 HorizontalAlignment="Left" 
-                 Margin="10,70,0,0" 
-                 Text="180" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Width="80" Height="25" TabIndex="3"/>
+                 Grid.Row="1" Grid.Column="2"  
+                 Text="{Binding Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 TabIndex="3"/>
 
-        <Label Content="Сумма кредита" 
-               HorizontalAlignment="Left" 
-               Margin="95,10,0,0" 
-               VerticalAlignment="Top"/>
+        <TextBlock Text="Сумма кредита" FontWeight="Bold"
+                   Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="Процентная ставка" FontWeight="Bold"
+                   Grid.Row="0" Grid.Column="1"/>
+        <TextBlock Text="Количество месяцев" FontWeight="Bold"
+                   Grid.Row="0" Grid.Column="2"/>
 
-        <Label Content="Процентная ставка" 
-               HorizontalAlignment="Left" 
-               Margin="95,41,0,0" 
-               VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock4" Grid.Column="0" Grid.Row="2"                  
+                   Text="Полная стоимость:" />
+        <TextBlock x:Name="textBlock5" Grid.Column="1" Grid.Row="2"
+                   Text="Проценты выплат:" />
+        <TextBlock x:Name="textBlock6" Grid.Column="2" Grid.Row="2"
+                   Text="Выгода:" />
 
-        <Label Content="Количество месяцев" 
-            HorizontalAlignment="Left" 
-            Margin="95,72,0,0" 
-            VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_FullCost" Grid.Column="0" Grid.Row="3"                   
+                   Text="{Binding FullCost, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" 
+                   FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock_Overpayment" Grid.Column="1" Grid.Row="3"                   
+                   Text="{Binding Overpayment, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" 
+                   FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock_Profit" Grid.Column="2" Grid.Row="3"
+                   Text="{Binding Profit, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" 
+                   FontWeight="Bold"/>
 
-        <ListView Name="ListView1"
-            Margin="0,100,0,0" Grid.ColumnSpan="2">
+        <ListView Name="ListView1" 
+                  IsSynchronizedWithCurrentItem="False"
+                  ItemsSource="{Binding Payments, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                  Grid.Row="5" Grid.Column="0"
+                  Grid.ColumnSpan="3">
+
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Ввести"
                               Click="MenuItem_Insert"/>
                     <MenuItem Header="Очистить"
                               Click="MenuItem_Clear"/>
+                    <MenuItem Header="Очистить все"
+                              Click="MenuItem_ClearAll"/>
                     <MenuItem Header="Сменить тип платежа"
                               Click="MenuItem_OverPayTypeChange"/>
                 </ContextMenu>
             </ListView.ContextMenu>
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=MonthNum}"                                    
-                        Width="50">Месяц</GridViewColumn>
+                        DisplayMemberBinding="{Binding Path=Month, UpdateSourceTrigger=PropertyChanged}"                                    
+                        Width="80">Месяц</GridViewColumn>
                     <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=Pay, 
+                        DisplayMemberBinding="{Binding Path=Pay, UpdateSourceTrigger=PropertyChanged, 
                         StringFormat={}{0:F2}}" 
-                        Width="100">Платеж</GridViewColumn>
+                        Width="120">Платеж</GridViewColumn>
                     <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=Percents, 
+                        DisplayMemberBinding="{Binding Path=Percents, UpdateSourceTrigger=PropertyChanged,
                         StringFormat={}{0:F2}}" 
                         Width="120">Проценты</GridViewColumn>
                     <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=Last, 
+                        DisplayMemberBinding="{Binding Path=Last, UpdateSourceTrigger=PropertyChanged,
                         StringFormat={}{0:F2}}" 
-                        Width="150">Остаток долга</GridViewColumn>
+                        Width="120">Остаток долга</GridViewColumn>
                     <GridViewColumn 
-                        DisplayMemberBinding="{Binding Path=OverPay, 
+                        DisplayMemberBinding="{Binding Path=OverPay, UpdateSourceTrigger=PropertyChanged,
                         StringFormat={}{0:F2}}" 
                         Width="120">Досрочно</GridViewColumn>
                     <GridViewColumn 
                         DisplayMemberBinding="{Binding Path=PayType}" 
-                        Width="110">Тип погашения</GridViewColumn>
+                        Width="120">Тип погашения</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -110,16 +152,8 @@
         <Label Name="Label_Profit" 
                Content="Выгода:" 
                HorizontalAlignment="Left" 
-               Margin="344,72,0,0" 
+               Margin="238,70,0,0" 
                VerticalAlignment="Top"/>
-
-        <Button Content="Вычислить"
-                Height="25" Width="80"
-                Margin="238,70,0,0" 
-                VerticalAlignment="Top" 
-                Click="Button_Click" 
-                HorizontalAlignment="Left" 
-                TabIndex="4" />
 
     </Grid>
 </Window>
