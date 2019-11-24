@@ -74,5 +74,20 @@ namespace Credit_Calc
 
             ipoteca.GetOverSet();
         }
+
+        private void MenuItem_Export1(object sender, RoutedEventArgs e)
+        {
+            Export.ExportExcel(ipoteca.Payments);
+        }
+
+        private void MenuItem_Export2(object sender, RoutedEventArgs e)
+        {
+            Export.ExportTXT(ipoteca.Payments);
+        }
+
+        private void MenuItem_Export3(object sender, RoutedEventArgs e)
+        {
+            Export.ExportCSV(ipoteca.Payments);
+        }
     }
 }

@@ -29,7 +29,13 @@
 
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>                   
+        </Style>
+
+        <Style TargetType="MenuItem">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
 
     </Window.Resources>
@@ -45,6 +51,7 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -53,40 +60,52 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <Menu Name="Menu1"
+              Background="AliceBlue"
+              Grid.Row="0" Grid.Column="0"
+              Grid.ColumnSpan="3">
+            <MenuItem Header="Export to EXCEL" Click="MenuItem_Export1"/>
+            <MenuItem Header="Export to TXT" Click="MenuItem_Export2"/>
+            <MenuItem Header="Export to CSV" Click="MenuItem_Export3"/>
+        </Menu>
+
         <TextBox Name="TextBox_CreditCost"
-                 Grid.Row="1" Grid.Column="0" 
+                 Grid.Row="2" Grid.Column="0" 
                  Text="{Binding Cost, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F2}}"
                  TabIndex="1"/>
         <TextBox Name="TextBox_Percent"
-                 Grid.Row="1" Grid.Column="1" 
+                 Grid.Row="2" Grid.Column="1" 
                  Text="{Binding Rate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat={}{0:F1}}"
                  TabIndex="2"/>
         <TextBox Name="TextBox_MonthCount"
-                 Grid.Row="1" Grid.Column="2"  
+                 Grid.Row="2" Grid.Column="2"  
                  Text="{Binding Period, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  TabIndex="3"/>
 
         <TextBlock Text="Сумма кредита" FontWeight="Bold"
-                   Grid.Row="0" Grid.Column="0"/>
+                   Grid.Row="1" Grid.Column="0"/>
         <TextBlock Text="Процентная ставка" FontWeight="Bold"
-                   Grid.Row="0" Grid.Column="1"/>
+                   Grid.Row="1" Grid.Column="1"/>
         <TextBlock Text="Количество месяцев" FontWeight="Bold"
-                   Grid.Row="0" Grid.Column="2"/>
+                   Grid.Row="1" Grid.Column="2"/>
 
-        <TextBlock x:Name="textBlock4" Grid.Column="0" Grid.Row="2"                  
+        <TextBlock x:Name="textBlock4" Grid.Column="0" Grid.Row="3"                  
                    Text="Полная стоимость:" />
-        <TextBlock x:Name="textBlock5" Grid.Column="1" Grid.Row="2"
+        <TextBlock x:Name="textBlock5" Grid.Column="1" Grid.Row="3"
                    Text="Проценты выплат:" />
-        <TextBlock x:Name="textBlock6" Grid.Column="2" Grid.Row="2"
+        <TextBlock x:Name="textBlock6" Grid.Column="2" Grid.Row="3"
                    Text="Выгода:" />
 
-        <TextBlock x:Name="textBlock_FullCost" Grid.Column="0" Grid.Row="3"                   
+        <TextBlock x:Name="textBlock_FullCost" 
+                   Grid.Column="0" Grid.Row="4"                   
                    Text="{Binding FullCost, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" 
                    FontWeight="Bold"/>
-        <TextBlock x:Name="textBlock_Overpayment" Grid.Column="1" Grid.Row="3"                   
+        <TextBlock x:Name="textBlock_Overpayment"
+                   Grid.Column="1" Grid.Row="4"                   
                    Text="{Binding Overpayment, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" 
                    FontWeight="Bold"/>
-        <TextBlock x:Name="textBlock_Profit" Grid.Column="2" Grid.Row="3"
+        <TextBlock x:Name="textBlock_Profit" 
+                   Grid.Column="2" Grid.Row="4"
                    Text="{Binding Profit, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" 
                    FontWeight="Bold"/>
 
@@ -153,7 +172,7 @@
                Content="Выгода:" 
                HorizontalAlignment="Left" 
                Margin="238,70,0,0" 
-               VerticalAlignment="Top"/>
+               VerticalAlignment="Top"/>        
 
     </Grid>
 </Window>
