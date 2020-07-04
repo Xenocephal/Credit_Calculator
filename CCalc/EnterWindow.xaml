@@ -8,6 +8,7 @@
         Title="Введите сумму" 
         Height="140" Width="210" 
         ResizeMode="NoResize" 
+        FontFamily="Century Gothic" FontSize="14"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="TextBox">
@@ -15,6 +16,12 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="0.3"/>
+                <GradientStop Color="#FF94C9FF" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <TextBox Name ="TextBox_Overpay" 
                  Text="5000"                  
                  Height="25"

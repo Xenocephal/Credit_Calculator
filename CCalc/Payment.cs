@@ -1,26 +1,21 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Credit_Calc
-{
+namespace Credit_Calc {
     // Тип досрочного погашения
     public enum OverPayType { Time, Amount, None };
 
-    public class Payment : INotifyPropertyChanged
-    {
+    public class Payment : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
+        public void OnPropertyChanged([CallerMemberName]string prop = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         // Номер месяца
         private int month;
-        public int Month
-        {
+        public int Month {
             get => month;
-            set
-            {
+            set {
                 month = value;
                 OnPropertyChanged("Month");
             }
@@ -28,11 +23,9 @@ namespace Credit_Calc
 
         // Сумма платежа, руб
         private double pay;
-        public double Pay
-        {
+        public double Pay {
             get { return pay; }
-            set
-            {
+            set {
                 if (value >= 0) pay = value;
                 else pay = 0;
                 OnPropertyChanged("Pay");
@@ -41,11 +34,9 @@ namespace Credit_Calc
 
         // Сумма по процентам в платеже, руб
         private double percents;
-        public double Percents
-        {
+        public double Percents {
             get { return percents; }
-            set
-            {
+            set {
                 if (value >= 0) percents = value;
                 else percents = 0;
                 OnPropertyChanged("Percents");
@@ -54,11 +45,9 @@ namespace Credit_Calc
 
         // Остаток по кредиту
         private double last;
-        public double Last
-        {
+        public double Last {
             get { return last; }
-            set
-            {
+            set {
                 if (value >= 0) last = value;
                 else last = 0;
                 OnPropertyChanged("Last");
@@ -67,12 +56,9 @@ namespace Credit_Calc
 
         // Сумма досрочного погашения
         private double overPay = 0;
-
-        public double OverPay
-        {
+        public double OverPay {
             get { return overPay; }
-            set
-            {
+            set {
                 if (value >= 0 & value <= Last) overPay = value;
                 else if (value > Last) overPay = Last;
                 OnPropertyChanged("OverPay");
@@ -81,11 +67,9 @@ namespace Credit_Calc
 
         // Тип досрочного погашения
         private OverPayType payType = OverPayType.None;
-        public OverPayType PayType
-        {
+        public OverPayType PayType {
             get => payType;
-            set
-            {
+            set {
                 if (Last == 0) payType = OverPayType.None;
                 else payType = value;
                 OnPropertyChanged("PayType");

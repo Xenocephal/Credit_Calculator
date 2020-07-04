@@ -58,3 +58,21 @@ D:\DESKTOP\PDM\API\C#\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.Properties.R
 D:\DESKTOP\PDM\API\C#\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.csproj.GenerateResource.cache
 D:\DESKTOP\PDM\API\C#\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.exe
 D:\DESKTOP\PDM\API\C#\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.pdb
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.csprojAssemblyReference.cache
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\EnterWindow.g.cs
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\MainWindow.g.cs
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\App.g.cs
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc_MarkupCompile.cache
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc_MarkupCompile.lref
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.exe
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.pdb
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\bin\Debug\Credit_Calc.exe.config
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\bin\Debug\Credit_Calc.exe
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\bin\Debug\Credit_Calc.pdb
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.csproj.ResolveComReference.cache
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\EnterWindow.baml
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\MainWindow.baml
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.g.resources
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.Properties.Resources.resources
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.csproj.GenerateResource.cache
+D:\C#\CREDIT CALC\Credit_Calculator\CCalc\obj\Debug\Credit_Calc.csproj.CoreCompileInputs.cache
